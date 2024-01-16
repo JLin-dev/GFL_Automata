@@ -95,7 +95,7 @@ def second_part_81n():
     time.sleep(1)
     # Select team
     random_click_image((center_cord[0] + TEAM2_OFFSET[0], center_cord[1] + TEAM2_OFFSET[1]))
-    time.sleep(0.5)
+    time.sleep(3)
     # Open refill menu
     random_click_image((center_cord[0] + TEAM2_OFFSET[0], center_cord[1] + TEAM2_OFFSET[1]))
 
