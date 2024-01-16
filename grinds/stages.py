@@ -25,7 +25,8 @@ def start_grind_81n():
     wait_for_image_and_click(image_path)
     first_time_depoly_81n()
     while True:
-        second_part_81n()
+        if not second_part_81n():
+            first_time_depoly_81n()
 
 
 
@@ -80,7 +81,11 @@ def second_part_81n():
 
     # Refill team
     image_path = 'images/stages/end_round_btn.png'
-    found, center_cord = wait_for_image(image_path)
+    found, center_cord = wait_for_image(image_path, timeout=5)
+    if not found:
+        cleanout_equip()
+        return False
+    
     image_path = 'images/stages/mission_choice_btn.png'
     found, center_cord = find_image(image_path)
     time.sleep(1)
@@ -170,3 +175,52 @@ def second_part_81n():
     # Back to combact
     image_path = 'images/edit_team/back_to_combat.png'
     wait_for_image_and_click(image_path)
+
+    image_path = 'images/stages/start_combat_btn.png'
+    found, center_cord = wait_for_image(image_path, timeout=5)
+    while not found:
+        print('Failed to go back')
+        image_path = 'images/edit_team/back_to_combat.png'
+        wait_for_image_and_click(image_path)
+        found, center_cord = wait_for_image(image_path,timeout=5)
+    return True
+
+    
+
+def cleanout_equip():
+    image_path = 'images/stages/upgrade_equip.png'
+    wait_for_image_and_click(image_path)
+
+    # select equip
+    image_path = 'images/stages/select_equip.png'
+    wait_for_image_and_click(image_path)
+    time.sleep(2)
+
+    # select upgrade equip
+    image_path = 'images/stages/select_upgrade_equip.png'
+    wait_for_image_and_click(image_path)
+
+    # Smart select
+    image_path = 'images/stages/smart_select_btn.png'
+    found, center_cord = wait_for_image(image_path)
+    random_click_image(center_cord)
+    time.sleep(0.3)
+    random_click_image(center_cord)
+    time.sleep(0.3)
+    random_click_image(center_cord)
+
+    # Confirm select Upgrade
+    image_path = 'images/stages/confirm_select_upgrade_equip.png'
+    wait_for_image_and_click(image_path)
+
+    # Confirm Upgrade
+    image_path = 'images/stages/confirm_upgrade_equip.png'
+    wait_for_image_and_click(image_path)
+
+    # Need to add double confrim use high tier
+
+    # Back to main menu
+    image_path = 'images/edit_team/back_to_combat.png'
+    wait_for_image_and_click(image_path)
+
+    

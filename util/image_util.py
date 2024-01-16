@@ -74,7 +74,7 @@ def wait_for_image(image_path, timeout=999999, threshold=0.8):
         time.sleep(1)  # Adjust the sleep duration based on your needs
 
     print("Wait for image time out")
-    return False
+    return False, None
 
 def wait_for_image_and_click(image_path, timeout=999999, threshold=0.8):
     start_time = time.time()
