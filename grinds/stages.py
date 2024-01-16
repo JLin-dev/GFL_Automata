@@ -109,7 +109,10 @@ def second_part_81n():
 
     # Retreat the resupply team
     image_path = 'images/stages/retreat_btn.png'
-    wait_for_image_and_click(image_path)
+    while not wait_for_image_and_click(image_path, timeout=5):
+        random_click_image((center_cord[0] + TEAM2_OFFSET[0], center_cord[1] + TEAM2_OFFSET[1]))
+
+
 
     # Confirm retreat
     image_path = 'images/stages/confirm_retreat_btn.png'
