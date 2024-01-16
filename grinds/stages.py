@@ -6,16 +6,12 @@ TEAM2_OFFSET = (361, 80)
 PLAN_FIRSTPOI_OFFSET = (310, 307)
 PLAN_SECONDPOI_OFFSET = (415, 162)
 EXCUTE_OFFSET = (770, 430)
+FIRST_EQUIP_OFFSET = (-756, -129)
+
 def start_grind_81n():
     environment_initialize()
-    found, center_cord = check_main_menu()
-    if not found:
-        print("Please Make Sure Start From Main Menu")
-        return
+    check_main_menu()
     
-    # Click battle_btn from main menu
-    random_click_image(center_cord)
-
     # Click 81n
     image_path = 'images/stages/mission_tab_81n.png'
     wait_for_image_and_click(image_path)
@@ -26,6 +22,14 @@ def start_grind_81n():
     first_time_depoly_81n()
     while True:
         if not second_part_81n():
+            check_main_menu()
+            # Click 81n
+            image_path = 'images/stages/mission_tab_81n.png'
+            wait_for_image_and_click(image_path)
+
+            # Click normal combat
+            image_path = 'images/stages/normal_combat_btn.png'
+            wait_for_image_and_click(image_path)
             first_time_depoly_81n()
 
 
@@ -194,7 +198,10 @@ def cleanout_equip():
     # select equip
     image_path = 'images/stages/select_equip.png'
     wait_for_image_and_click(image_path)
-    time.sleep(2)
+    image_path = 'images/stages/enhance_equip_safety_lock_btn.png'
+    found, center_cord = wait_for_image(image_path)
+    random_click_image((center_cord[0] + FIRST_EQUIP_OFFSET[0], center_cord[1] + FIRST_EQUIP_OFFSET[1]))
+
 
     # select upgrade equip
     image_path = 'images/stages/select_upgrade_equip.png'
@@ -218,7 +225,13 @@ def cleanout_equip():
     wait_for_image_and_click(image_path)
 
     # Need to add double confrim use high tier
-
+    image_path = 'images/stages/confirm_use_hightier_equip.png'
+    wait_for_image_and_click(image_path)
+    
+    #
+    image_path = 'images/stages/finish_enhance_btn.png'
+    wait_for_image(image_path)
+    
     # Back to main menu
     image_path = 'images/edit_team/back_to_combat.png'
     wait_for_image_and_click(image_path)

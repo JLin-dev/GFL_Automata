@@ -6,6 +6,7 @@ import time
 def main():
     #start_grind_logistic_depolyment()
     start_grind_81n()
+    #cleanout_equip()
 
 
 

@@ -23,7 +23,6 @@ def find_image(image_path, threshold=0.8):
     # Convert the screenshot to grayscale
     screenshot_gray = cv2.cvtColor(screenshot, cv2.COLOR_BGR2GRAY)
 
-
     # Match the template in the screenshot
     result = cv2.matchTemplate(screenshot_gray, template, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
